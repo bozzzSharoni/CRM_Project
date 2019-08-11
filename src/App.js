@@ -25,10 +25,10 @@ class App extends Component {
     this.componentWillMount()
   }
 
-  updateClient = async (key, value, id) => {
+  updateClient = async (key, value, name) => {
     let update = { [key]: value }
-    await axios.put(`http://localhost:8080/actions/${id}`, update)
-  }   
+    await axios.put(`http://localhost:8080/actions/${name}`, update)
+  }
 
   render() {
     const clientList = this.state.clientList
@@ -37,16 +37,16 @@ class App extends Component {
       <Router>
         <div className="App">
           <div id="links">
-            
+
             <span><Link to="/clients">Clients</Link></span>
             <span><Link to="/actions">Actions</Link></span>
             <span><Link to="/analytics">Analytics</Link></span>
           </div>
-          
+
           <Route path="/clients" exact render={() => <Clients users={clientList} />} />
           <Route path="/actions" exact render={() => <Actions users={clientList} addClient={this.addClient} updateClient={this.updateClient} />} />
           <Route path="/analytics" exact render={() => <Analytics users={clientList} />} />
-          
+
         </div>
       </Router>
     );

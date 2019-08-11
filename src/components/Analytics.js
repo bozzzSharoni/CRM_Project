@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Charts from './Charts'
 
 class Analytics extends Component {
     constructor() {
@@ -68,6 +69,9 @@ class Analytics extends Component {
                     <span>Outstanding Clients</span>
                     <h2>{this.hottestCountry()}</h2>
                     <span>Hottest Country</span>
+                </div>
+                <div>
+                 <Charts users={this.props.users}/>
                 </div>
             </div>
         )

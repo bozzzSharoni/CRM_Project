@@ -29,7 +29,7 @@ class UpdatedClient extends Component {
     transferButton = () => {
         for (let u of this.props.users) {
             if (this.state.clientName === u.name) {
-                this.props.updateClient('owner', this.state.ownerName, u._id)
+                this.props.updateClient('owner', this.state.ownerName, u.name)
             }
 
         }
@@ -38,7 +38,7 @@ class UpdatedClient extends Component {
     sendEmail = () => {
         for (let u of this.props.users) {
             if (this.state.clientName === u.name) {
-                this.props.updateClient('emailType', this.state.emailType, u._id)
+                this.props.updateClient('emailType', this.state.emailType, u.name)
             }
         }
     }
@@ -46,7 +46,7 @@ class UpdatedClient extends Component {
     declareSale = () => {
          for(let u of this.props.users){
              if(this.state.clientName === u.name){
-                 this.props.updateClient('sold', true, u._id)
+                 this.props.updateClient('sold', true, u.name)
              }
          }
     }

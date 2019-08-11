@@ -29,10 +29,10 @@ app.post('/actions', function (req, res) {
   c1.save()
 })
 
-app.put('/actions/:id', function (req, res) {
-  const id = req.params.id
+app.put('/actions/:name', function (req, res) {
+  const name = req.params.name
   const updatedData = req.body
-  Client.findOneAndUpdate({"_id":id}, updatedData, function(){
+  Client.findOneAndUpdate({ "name": name }, updatedData, function () {
     res.end()
   })
 })
