@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Popup from './Popup'
 
 
@@ -14,7 +15,7 @@ class Clients extends Component {
         }
 
     }
-    
+
 
     checkSold(sold) {
         if (sold) {
@@ -25,12 +26,16 @@ class Clients extends Component {
         }
     }
 
-    search = (searchBarValue) => {
-        const name = searchBarValue.target.name
-        const value = searchBarValue.target.value
+    changeCategpry = (event) => {
         this.setState({
-            [name]: value,
-            count: 9
+            category: event.target.value
+
+        })
+    }
+
+    search = (event) => {
+        this.setState({
+            whatToSearch: event.target.value
         })
     }
 
@@ -73,18 +78,19 @@ class Clients extends Component {
 
     render() {
         let clients = this.props.users.slice(this.state.count - 9, this.state.count)
-        console.log(clients)
         return (
             <div className="Clients">
 
                 <div className="Search">
-                    <input placeholder="Search" onChange={this.search} value={this.state.whatToSearch}></input>
-                    <select className='waves-effect waves-teal btn-flat btn-small'>
+                    
+                    <input placeholder="Search" type='text' onChange={this.search} value={this.state.whatToSearch}></input>
+                    <select className="browser-default col s2" type='select-one' onChange={this.changeCategpry}>
                         <option value="name">Name</option>
                         <option value="country">Country</option>
+                        <option value="owner">Owner</option>
                     </select>
-                    <button className="right hide-on-med-and-down waves-effect waves-light btn" onClick={this.backPage}>Back</button>
                     <button className="right hide-on-med-and-down waves-effect waves-light btn" onClick={this.nextPage}>Next</button>
+                    <button className="right hide-on-med-and-down waves-effect waves-light btn" onClick={this.backPage}>Back</button>
                     <span className="left hide-on-med-and-down flow-text">Page Number: {this.state.pageNumber}</span>
 
                 </div>
@@ -100,8 +106,8 @@ class Clients extends Component {
                             <th>Owner</th>
 
                         </tr>
-                        
-                        {clients.map(c =>
+
+                        {clients.filter(l => l[this.state.category].toLowerCase().includes(this.state.whatToSearch) || l[this.state.category].includes(this.state.whatToSearch)).map(c =>
                             <tr className="#a7ffeb teal accent-1">
                                 <th>{c.name.split(' ', 2)[0]}</th>
                                 <th>{c.name.split(' ', 2)[1]}</th>

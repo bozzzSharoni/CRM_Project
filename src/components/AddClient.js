@@ -42,17 +42,21 @@ class AddClient extends Component {
     }
     render() {
         return (
-            <div>
-                <h2>ADD CLIENT</h2>
-                First Name <input type="text" onChange={this.nameVal} />
+            <div className='left-align'>
+                <h4 className='align-center'>ADD CLIENT</h4>
+                <div className='input-field inline'>
+                <input type="text" onChange={this.nameVal} placeholder="First Name"/>
                 <br />
-                Surname <input type="text" onChange={this.surNameVal} />
+                <input type="text" onChange={this.surNameVal} placeholder="Surname"/>
                 <br />
-                Country <input type="text" onChange={this.countryVal} />
+                <input type="text" onChange={this.countryVal} placeholder="Country"/>
                 <br />
-                Owner <input type="text" onChange={this.ownerVal} />
+                <input type="text" onChange={this.ownerVal} placeholder="Owner"/>
                 <br />
-                <button onClick={this.addClient}>Add New Client</button>
+                <button className='btn waves-effect waves-light' onClick={this.addClient}>Add New Client
+                <i class="material-icons right">send</i>
+                </button>
+                </div>
             </div>
         )
     }
