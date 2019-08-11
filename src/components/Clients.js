@@ -8,19 +8,20 @@ class Clients extends Component {
         this.state = {
             whatToSearch: '',
             category: 'name',
-            count: 0,
+            count: 9,
             pageNumber: 1
 
         }
 
     }
+    
 
     checkSold(sold) {
         if (sold) {
-            return 'sold'
+            return <i class="material-icons">check</i>
         }
         else {
-            return 'sold-not'
+            return <i class="material-icons">clear</i>
         }
     }
 
@@ -29,7 +30,7 @@ class Clients extends Component {
         const value = searchBarValue.target.value
         this.setState({
             [name]: value,
-            count: 0
+            count: 9
         })
     }
 
@@ -49,10 +50,10 @@ class Clients extends Component {
         let pageNumber = this.state.pageNumber
         let count = this.state.count
 
-        if (pageNumber <= 0 || count <= 0) {
+        if (pageNumber <= 0 || count <= 9) {
             this.setState({
                 pageNumber: 1,
-                count: 0
+                count: 9
             })
             alert('You are on the first page already!')
         }
@@ -71,24 +72,25 @@ class Clients extends Component {
     }
 
     render() {
-
+        let clients = this.props.users.slice(this.state.count - 9, this.state.count)
+        console.log(clients)
         return (
             <div className="Clients">
 
                 <div className="Search">
                     <input placeholder="Search" onChange={this.search} value={this.state.whatToSearch}></input>
-                    <select>
+                    <select className='waves-effect waves-teal btn-flat btn-small'>
                         <option value="name">Name</option>
                         <option value="country">Country</option>
                     </select>
-                    <button onClick={this.backPage}>Back</button>
-                    <button onClick={this.nextPage}>Next</button>
-                    <span>Page Number: {this.state.pageNumber}</span>
+                    <button className="right hide-on-med-and-down waves-effect waves-light btn" onClick={this.backPage}>Back</button>
+                    <button className="right hide-on-med-and-down waves-effect waves-light btn" onClick={this.nextPage}>Next</button>
+                    <span className="left hide-on-med-and-down flow-text">Page Number: {this.state.pageNumber}</span>
 
                 </div>
                 <div className="Table">
-                    <table>
-                        <tr>
+                    <table className="centered">
+                        <tr className="#1de9b6 teal accent-3">
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Country</th>
@@ -98,8 +100,9 @@ class Clients extends Component {
                             <th>Owner</th>
 
                         </tr>
-                        {this.props.users.map(c =>
-                            <tr>
+                        
+                        {clients.map(c =>
+                            <tr className="#a7ffeb teal accent-1">
                                 <th>{c.name.split(' ', 2)[0]}</th>
                                 <th>{c.name.split(' ', 2)[1]}</th>
                                 <th>{c.country}</th>

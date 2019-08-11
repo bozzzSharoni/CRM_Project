@@ -61,6 +61,7 @@ class Analytics extends Component {
         return (
             <div className="Analytics">
                 <div>
+
                     <h2>{this.newClients()}</h2>
                     <span>New {this.state.months[new Date().getMonth()]} Clients</span>
                     <h2>{this.emailsSent()}</h2>
@@ -71,7 +72,7 @@ class Analytics extends Component {
                     <span>Hottest Country</span>
                 </div>
                 <div>
-                 <Charts users={this.props.users}/>
+                    <Charts users={this.props.users} />
                 </div>
             </div>
         )
