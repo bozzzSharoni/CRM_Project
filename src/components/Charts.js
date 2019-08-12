@@ -31,6 +31,25 @@ class Charts extends Component {
 
     }
 
+    salesByCountry = () => {
+        let countries = []
+        let hottestCountries = {}
+        let clients = this.props.users.map(c => c.country)
+        for (let c of clients) {
+            let num = this.props.users.filter(d => d.country === c && d.sold === true)
+            if (c !== undefined && c !== null) {
+                hottestCountries[c] = { name: c, sold: num.length }
+            }
+        }
+
+        for (let i in hottestCountries) {
+            countries.push(hottestCountries[i])
+        }
+
+        return countries
+    }
+
+
 
 
     render() {
@@ -51,6 +70,23 @@ class Charts extends Component {
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="sold" fill="#82ca9d" />
+                </BarChart>
+            
+                <h3>Sales By Country</h3>
+                <BarChart
+                    width={1000}
+                    height={300}
+                    data={this.salesByCountry()}
+                    margin={{
+                        top: 5, right: 30, left: 20, bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="sold" fill="red" />
                 </BarChart>
             </div>
 
