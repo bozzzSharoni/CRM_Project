@@ -60,17 +60,30 @@ class Analytics extends Component {
     render() {
         return (
             <div className="Analytics">
-                <div>
-
-                    <h2>{this.newClients()}</h2>
-                    <span>New {this.state.months[new Date().getMonth()]} Clients</span>
-                    <h2>{this.emailsSent()}</h2>
-                    <span>Emails Sent</span>
-                    <h2>{this.outstandingClients()}</h2>
-                    <span>Outstanding Clients</span>
-                    <h2>{this.hottestCountry()}</h2>
-                    <span>Hottest Country</span>
+                <div class="row">
+                    <div className='col s3'>
+                        <h2 >{this.newClients()}</h2>
+                        <div className='logos'><i class="large material-icons">account_circle</i></div>
+                        <span>New Clients</span>
+                    </div>
+                    <div className='col s3'>
+                        <h2>{this.emailsSent()}</h2>
+                        <div className='logos'><i class="large material-icons">mail</i></div>
+                        <span>Emails Sent</span>
+                    </div>
+                    <div className='col s3'>
+                        <h2>{this.outstandingClients()}</h2>
+                        <div className='logos'><i class="large material-icons">people</i></div>
+                        <span>Outstanding Clients</span>
+                    </div>
+                    <div className='col s3'>
+                        <h2>{this.hottestCountry()}</h2>
+                        <div className='logos'><i class="large material-icons">whatshot</i></div>
+                        <span>Hottest Country</span>
+                    </div>
                 </div>
+
+
                 <div>
                     <Charts users={this.props.users} />
                 </div>
