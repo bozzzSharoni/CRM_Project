@@ -10,7 +10,7 @@ class Popup extends Component {
             country: this.props.user.country
         }
     }
-    update = (event) => {
+    updateInfo = (event) => {
         const target = event.target
         const name = target.name
         const value = target.value
@@ -19,10 +19,10 @@ class Popup extends Component {
 
         })
     }
-    cancel = () => {
+    cancelButton = () => {
         this.props.cancel()
     }
-    popUpdate = () => {
+    updateButton = () => {
         let user = { ...this.props.user }
         user.name = this.state.name + ' ' + this.state.lastname
         user.country = this.state.country
@@ -31,11 +31,11 @@ class Popup extends Component {
     render() {
         return (
             <div id='popup' className='input'>
-                <button className='x' onClick={this.cancel} >x</button>
-                name: <input name='name' type='text' value={this.state.name} onChange={this.update}></input>
-                last name: <input name='lastname' type='text' onChange={this.update} value={this.state.lastname}></input>
-                country: <input name='country' type='text' onChange={this.update} value={this.state.country}></input>
-                <button onClick={this.popUpdate}>update</button>   
+                <button className='x' onClick={this.cancelButton} >x</button>
+                name: <input name='name' type='text' value={this.state.name} onChange={this.updateInfo}></input>
+                last name: <input name='lastname' type='text' onChange={this.updateInfo} value={this.state.lastname}></input>
+                country: <input name='country' type='text' onChange={this.updateInfo} value={this.state.country}></input>
+                <button onClick={this.updateButton}>update</button>   
             </div>
         )
     }
