@@ -36,20 +36,20 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        <div class="navbar-fixed">
-          <nav>
-          <div class="nav-wrapper teal lighten-1">
-          <a href="#" class="brand-logo">CRM</a>
-            <div className="right hide-on-med-and-down">
-              <span className="waves-effect waves-light btn teal lighten-2 z-depth-2"><Link to="/clients" >Clients </Link></span>
-              <span className='waves-effect waves-light btn teal lighten-2 z-depth-2'><Link to="/actions"> Actions </Link></span>
-              <span className='waves-effect waves-light btn teal lighten-2 z-depth-2'><Link to="/analytics"> Analytics </Link></span>
-            </div>
-          </div>
-          </nav>
+          <div class="navbar-fixed">
+            <nav>
+              <div class="nav-wrapper teal lighten-1">
+                <a href="#" class="brand-logo">CRM</a>
+                <div className="right hide-on-med-and-down">
+                  <span className="waves-effect waves-light btn teal lighten-2 z-depth-2"><Link to="/clients" >Clients </Link></span>
+                  <span className='waves-effect waves-light btn teal lighten-2 z-depth-2'><Link to="/actions"> Actions </Link></span>
+                  <span className='waves-effect waves-light btn teal lighten-2 z-depth-2'><Link to="/analytics"> Analytics </Link></span>
+                </div>
+              </div>
+            </nav>
           </div>
 
-          <Route path="/clients" exact render={() => <Clients users={clientList} />} />
+          <Route path="/clients" exact render={() => <Clients users={clientList} updateClient={this.updateClient} />} />
           <Route path="/actions" exact render={() => <Actions users={clientList} addClient={this.addClient} updateClient={this.updateClient} />} />
           <Route path="/analytics" exact render={() => <Analytics users={clientList} />} />
 

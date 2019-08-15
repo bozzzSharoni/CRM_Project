@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Client from './Client'
 import Popup from './Popup'
 
 
@@ -10,7 +10,8 @@ class Clients extends Component {
             whatToSearch: '',
             category: 'name',
             count: 9,
-            pageNumber: 1
+            pageNumber: 1,
+            updateUser: { show: false, user: {} }
 
         }
 
@@ -72,9 +73,24 @@ class Clients extends Component {
         })
     }
 
-    popUp() {
-
+    popupUpdateUser = async (user) => {
+        let update = { ...this.state.updateUser }
+        update.show = true
+        update.user = user
+        await this.setState({
+            updateUser: update
+        })
     }
+
+    popupCancel = () => {
+        let update = { ...this.state.updateUser }
+        update.show = false
+        this.setState({
+            updateUser: update
+        })
+    }
+
+
 
     render() {
         let clients = this.props.users.slice(this.state.count - 9, this.state.count)
@@ -82,7 +98,7 @@ class Clients extends Component {
             <div className="Clients">
 
                 <div className="Search">
-                    
+                {this.state.updateUser.show ? <Popup updateClient={this.props.updateClient} cancel={this.popupCancel} user={this.state.updateUser.user} /> : null}
                     <input placeholder="Search" type='text' onChange={this.search} value={this.state.whatToSearch}></input>
                     <select className="browser-default col s2" type='select-one' onChange={this.changeCategpry}>
                         <option value="name">Name</option>
@@ -96,7 +112,7 @@ class Clients extends Component {
                 </div>
                 <div className="Table">
                     <table className="centered">
-                        <tr className="#1de9b6 teal accent-3">
+                        <tr className="#1de9b6 teal accent-3" >
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Country</th>
@@ -106,21 +122,9 @@ class Clients extends Component {
                             <th>Owner</th>
 
                         </tr>
-
-                        {clients.filter(l => l[this.state.category].toLowerCase().includes(this.state.whatToSearch) || l[this.state.category].includes(this.state.whatToSearch)).map(c =>
-                            <tr className="#a7ffeb teal accent-1">
-                                <th>{c.name.split(' ', 2)[0]}</th>
-                                <th>{c.name.split(' ', 2)[1]}</th>
-                                <th>{c.country}</th>
-                                <th> {c.firstContact.slice(0, 10)}</th>
-                                <th>{c.emailType}</th>
-                                <th>{this.checkSold(c.sold)} </th>
-                                <th>{c.owner}</th>
-                            </tr>
-                        )}
+                        {clients.filter(l => l[this.state.category].toLowerCase().includes(this.state.whatToSearch) || l[this.state.category].includes(this.state.whatToSearch)).map(c => <Client checkSold={this.checkSold} updateUser={this.popupUpdateUser} client={c} />)}
                     </table>
                 </div>
-
             </div >
         )
     }

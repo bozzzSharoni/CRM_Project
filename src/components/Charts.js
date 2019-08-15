@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts'
 
 class Charts extends Component {
@@ -71,7 +71,7 @@ class Charts extends Component {
                     <Legend />
                     <Bar dataKey="sold" fill="#82ca9d" />
                 </BarChart>
-            
+
                 <h3>Sales By Country</h3>
                 <BarChart
                     width={1000}

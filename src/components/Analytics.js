@@ -66,7 +66,7 @@ class Analytics extends Component {
                         <div className='logos'><i class="large material-icons">account_circle</i></div>
                         <span>New Clients</span>
                     </div>
-                    <div className='col s3'>
+                    <div className='col s3'>    
                         <h2>{this.emailsSent()}</h2>
                         <div className='logos'><i class="large material-icons">mail</i></div>
                         <span>Emails Sent</span>
