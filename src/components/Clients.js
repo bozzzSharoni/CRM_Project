@@ -11,7 +11,7 @@ class Clients extends Component {
             category: 'name',
             count: 9,
             pageNumber: 1,
-            updateUser: { show: false, user: {} }
+            updateUser: { showPopup: false, user: {} }
 
         }
 
@@ -75,7 +75,7 @@ class Clients extends Component {
 
     popupUpdateUser = async (user) => {
         let update = { ...this.state.updateUser }
-        update.show = true
+        update.showPopup = true
         update.user = user
         await this.setState({
             updateUser: update
@@ -84,7 +84,7 @@ class Clients extends Component {
 
     popupCancel = () => {
         let update = { ...this.state.updateUser }
-        update.show = false
+        update.showPopup = false
         this.setState({
             updateUser: update
         })
@@ -98,7 +98,7 @@ class Clients extends Component {
             <div className="Clients">
 
                 <div className="Search">
-                {this.state.updateUser.show ? <Popup updateClient={this.props.updateClient} cancel={this.popupCancel} user={this.state.updateUser.user} /> : null}
+                {this.state.updateUser.showPopup ? <Popup updateClient={this.props.updateClient} cancel={this.popupCancel} user={this.state.updateUser.user} /> : null}
                     <input placeholder="Search" type='text' onChange={this.search} value={this.state.whatToSearch}></input>
                     <select className="browser-default col s2" type='select-one' onChange={this.changeCategpry}>
                         <option value="name">Name</option>
