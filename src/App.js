@@ -15,14 +15,14 @@ class App extends Component {
       clientList: []
     }
   }
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     let client = await axios.get('http://localhost:8080/clients')
     await this.setState({ clientList: client.data })
   }
 
   addClient = async (client) => {
     await axios.post('http://localhost:8080/actions', client)
-    this.componentWillMount()
+    this.componentDidMount()
   }
 
   updateClient = async (key, value, name) => {
